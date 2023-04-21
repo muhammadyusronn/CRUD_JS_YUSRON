@@ -56,7 +56,7 @@
                   <div class="mb-3">
                     <label for="task" class="form-label">Task</label>
                     <input type="hidden" class="form-control" id="id" name="id">
-                    <input type="text" id="baseURL" value="<?= $actual_link =
+                    <input type="hidden" id="baseURL" value="<?= $actual_link =
                       (empty($_SERVER["HTTPS"]) ? "http" : "https") .
                       "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>">
                     <input type="text" class="form-control" id="task" name="task">
