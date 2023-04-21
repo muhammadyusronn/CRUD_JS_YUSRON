@@ -56,6 +56,9 @@
                   <div class="mb-3">
                     <label for="task" class="form-label">Task</label>
                     <input type="hidden" class="form-control" id="id" name="id">
+                    <input type="text" id="baseURL" value="<?= $actual_link =
+                      (empty($_SERVER["HTTPS"]) ? "http" : "https") .
+                      "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>">
                     <input type="text" class="form-control" id="task" name="task">
                   </div>
                   <div class="mb-3">
@@ -102,9 +105,9 @@
         $inputs.prop("disabled", true);
         var urlAction = ""
         if($("#id").val()===""){
-          urlAction="http://localhost:99/koding-next/action/transaksi.php?act=insert"
+          urlAction=$("#baseURL").val()+"action/transaksi.php?act=insert"
         }else{
-          urlAction="http://localhost:99/koding-next/action/transaksi.php?act=update"
+          urlAction=$("#baseURL").val()+"action/transaksi.php?act=update"
         }
         // Fire off the request to /form.php
         request = $.ajax({
@@ -145,7 +148,7 @@
         resetForm()
          $.ajax({    
               type: "GET",
-              url: "http://localhost:99/koding-next/action/transaksi.php?act=edit", 
+              url: $("#baseURL").val()+"action/transaksi.php?act=edit", 
               data:{editId:id},            
               dataType: "html",                  
               success: function(data){   
@@ -160,7 +163,7 @@
       function deleteData(id){
          $.ajax({    
             type: "GET",
-            url: "http://localhost:99/koding-next/action/transaksi.php?act=delete",
+            url: $("#baseURL").val()+"action/transaksi.php?act=delete",
             data:{deleteId:id},            
             dataType: "html",                  
             success: function(data){   
@@ -173,7 +176,7 @@
       function getData(){
          $.ajax({
           type: "GET",
-          url: "http://localhost:99/koding-next/action/transaksi.php?act=getAll",
+          url: $("#baseURL").val()+"action/transaksi.php?act=getAll",
           dataType: "html",
           success: function (data) {
             $("#table-container").html(data);
